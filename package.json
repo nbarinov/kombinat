@@ -1,0 +1,26 @@
+{
+  "name": "kombinat",
+  "version": "1.0.0",
+  "description": "Курсовой проект по дисциплине \"Базы данных\" на тему \"Комбинат школьного питания\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbarinov/kombinat.git"
+  },
+  "author": "Nikita Barinov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nbarinov/kombinat/issues"
+  },
+  "homepage": "https://github.com/nbarinov/kombinat#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "dependencies": {
+    "npm": "^5.8.0"
+  }
+}
