@@ -31,7 +31,7 @@ module.exports = {
             }
         ]
     },
-    plugin: [
+    plugins: [
         new ExtractTextPlugin('bundle.css'),
         new webpack.DefinePlugin({
             'process.env': {
