@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
 
 process.noDeprecation = true;
 
@@ -43,5 +44,10 @@ module.exports = {
             warnings: false,
             mangle: true
         })
-    ]
+    ],
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, './source'),
+        },
+    }
 };
