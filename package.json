@@ -19,6 +19,10 @@
     "url": "https://github.com/nbarinov/kombinat/issues"
   },
   "homepage": "https://github.com/nbarinov/kombinat#readme",
+  "engines": {
+    "node": ">=9.1.*",
+    "npm": "^5.6.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
