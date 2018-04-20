@@ -41,6 +41,7 @@
     "globals": {
         "__filename": true,
         "__dirname": true,
-        "process": true
+        "process": true,
+        "React": true
     }
 }
