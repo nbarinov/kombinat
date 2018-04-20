@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { server } from '../config';
 import fetch from 'isomorphic-fetch';
 
 const DataComponent = (ComposedComponent, url) => (
@@ -17,7 +16,7 @@ const DataComponent = (ComposedComponent, url) => (
         componentDidMount() {
             this.setState({ loading: true });
 
-            fetch(server + url)
+            fetch(url)
                 .then(response => response.json())
                 .then(data => this.setState({
                     loaded: true,
