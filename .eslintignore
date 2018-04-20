@@ -1,3 +1,4 @@
 dist/assets/
 __tests__/
 coverage/
+source/server/index.js
