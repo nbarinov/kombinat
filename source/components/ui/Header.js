@@ -1,4 +1,4 @@
-import { title } from '../config';
+import { title } from '../../config';
 import MainMenu from './MainMenu';
 
 const Header = () => 

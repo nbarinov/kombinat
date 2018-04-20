@@ -1,10 +1,10 @@
 import { Switch, Route } from 'react-router-dom';
 
-import DataComponent from './DataComponent';
-import List from './List';
-import Header from './Header';
-import LogInForm from './LogInForm';
-import Whoops404 from './Whoops404';
+import DataComponent from './HOC/DataComponent';
+import List from './ui/List';
+import Header from './ui/Header';
+import Profile from './ui/Profile';
+import Whoops404 from './ui/Whoops404';
 
 import '../style/app.css';
 
@@ -15,7 +15,7 @@ const App = () => (
         <Header />
         <Switch>
             <Route exact path="/" component={PersonsList} />
-            <Route path="/login" component={LogInForm} />
+            <Route path="/profile" component={Profile} />
             <Route component={Whoops404} />
         </Switch>
     </div>
