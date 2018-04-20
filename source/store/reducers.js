@@ -1,22 +1,28 @@
 import C from '../constants';
 
-export const user = (state = false, action = { type: null }) => {
+export const user = (state = null, action) => {
     switch(action.type) {
         case C.USER_LOG_IN:
-            return true;
+            return {
+                id: action.id,
+                timestamp: action.timestamp
+            };
         case C.USER_LOG_OUT:
-            return false;
+            return null;
         default:
             return state;
     }
 };
 
-export const admin = (state = false, action = { type: null }) => {
+export const admin = (state = null, action) => {
     switch (action.type) {
         case C.ADMIN_LOG_IN:
-            return true;
+            return {
+                id: action.id,
+                timestamp: action.timestamp
+            };
         case C.ADMIN_LOG_OUT:
-            return false;
+            return null;
         default:
             return state;
     }
