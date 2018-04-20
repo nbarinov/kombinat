@@ -1,7 +1,3 @@
-import { connect } from 'react-redux';
-import { userLogIn, userLogOut } from '../../actions';
-
-
 const Profile = ({ user, onLogIn, onLogOut }) => {
     return <div>
         {`${user}`}
@@ -12,14 +8,4 @@ const Profile = ({ user, onLogIn, onLogOut }) => {
     </div>;
 };
 
-export default connect(
-    ({ user }) => ({ user }),
-    dispath => ({
-        onLogIn(id) {
-            dispath(userLogIn(id));
-        },
-        onLogOut() {
-            dispath(userLogOut());
-        }
-    })
-)(Profile);
+export default Profile;

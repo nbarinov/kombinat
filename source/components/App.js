@@ -1,9 +1,9 @@
 import { Switch, Route } from 'react-router-dom';
 
+import { Profile } from './containers';
 import DataComponent from './HOC/DataComponent';
 import List from './ui/List';
 import Header from './ui/Header';
-import Profile from './ui/Profile';
 import Whoops404 from './ui/Whoops404';
 
 import '../style/app.css';
