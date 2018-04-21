@@ -5,3 +5,18 @@ export const dateFormatDote = (date) => {
 
     return `${zeroBegining(date.getDate())}.${zeroBegining(date.getMonth())}.${date.getFullYear()}`;
 };
+
+export const months = [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь',
+];
