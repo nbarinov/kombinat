@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__title {
+    font-size: 21px;
+}
+
+.header__title a {
+    border-bottom: none;
+    color: #000;
+    text-decoration: none;
+}

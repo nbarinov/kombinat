@@ -12,7 +12,7 @@ const PersonsList = DataComponent(List, '/api/persons');
 
 const App = () => (
     <div className="app">
-        <Header />
+        <Header className="app__header" />
         <Switch>
             <Route exact path="/" component={PersonsList} />
             <Route path="/profile" component={Profile} />
