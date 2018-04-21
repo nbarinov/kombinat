@@ -2,3 +2,7 @@
 .profile__rate .table__td--sum {
     width: 15%;
 }
+
+.profile__balance {
+    text-align: right;
+}

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import LogInForm from './LogInForm';
 import DataComponent from '../HOC/DataComponent';
 import Table from './Table';
+import { months } from '../../libs/date-helper';
 
 import '../../style/profile.css';
 
@@ -25,6 +26,9 @@ const Profile = ({ className, user, onLogIn, onLogOut }) => {
             <section className="profile__section">
                 <h2 className="profile__title">Расходы</h2>
                 <RateTable className="profile__rate" />
+            </section>
+            <section className="profile__balance">
+                <h2>{`Итого, ${(user.balance < 0) ? 'задолженность' : 'баланс'} на 1 ${months[new Date().getMonth()]}: ${user.balance}₽`}</h2>
             </section>
             <button onClick={onLogOut}>Log Out</button>
         </div>;
