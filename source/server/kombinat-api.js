@@ -42,26 +42,6 @@ router.get('/person/find', (req, res) => {
     }
 });
 
-router.get('/person', (req, res) => {
-    const lname = decodeURIComponent(req.query.lname);
-
-    try {
-        if (lname) {
-            connection.query(`select p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.balance 
-                             from person p 
-                             inner join school s on p.tin_school = s.tin where p.lname like '${lname}'`, 
-            (error, results) => {
-                if (error) throw error;
-
-                respond(req, res, results);
-            });
-        }
-    } catch(err) {
-        console.log(err.message);
-        console.log(err.stack);
-    }
-});
-
 router.get('/persons', (req, res) => {
     try {
         connection.query(`select p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.balance 
