@@ -49,7 +49,8 @@ router.get('/person/rate/:account', (req, res) => {
         if(account) {
             connection.query(`SELECT year, month, sum
                               FROM rate
-                              WHERE person_account='${account}' ORDER BY rate_id`,
+                              WHERE person_account='${account}'
+                              ORDER BY rate_id DESC`,
             (error, results) => {
                 if(error) throw error;
 
@@ -67,9 +68,10 @@ router.get('/person/payment/:account', (req, res) => {
 
     try {
         if (account) {
-            connection.query(`SELECT bank, date_commission dateCommission, sum
+            connection.query(`SELECT payment_id id, bank, date_commission date, sum
                               FROM payment
-                              WHERE person_account='${account}' ORDER BY payment_id`,
+                              WHERE person_account='${account}' 
+                              ORDER BY payment_id DESC`,
             (error, results) => {
                 if (error) throw error;
 
