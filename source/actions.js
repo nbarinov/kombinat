@@ -1,15 +1,15 @@
 import C from './constants';
 
-const logIn = (type, id) => ({
+const logIn = (type, user) => ({
     type,
-    id,
+    user,
     timestamp: new Date().toString(),
 });
 
 const logOut = (type) => ({ type });
 
-export const userLogIn = (id) => logIn(C.USER_LOG_IN, id);
+export const userLogIn = (user) => logIn(C.USER_LOG_IN, user);
 export const userLogOut = () => logOut(C.USER_LOG_OUT);
 
-export const adminLogIn = (id) => logIn(C.ADMIN_LOG_IN, id);
+export const adminLogIn = (user) => logIn(C.ADMIN_LOG_IN, user);
 export const adminLogOut = () => logOut(C.ADMIN_LOG_OUT);
