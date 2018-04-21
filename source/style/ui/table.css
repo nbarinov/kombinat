@@ -1,0 +1,45 @@
+.table-container {}
+
+.table-container__p--center {
+    text-align: center;
+}
+
+.table-container__button {
+    border: 0;
+    background-color: transparent;
+    font-size: 14px;
+    font-style: italic;
+    color: #adb5bd;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+}
+
+.table__th {
+    padding-bottom: 6px;
+
+    border-bottom: 1px solid #e9ecef;
+    border-collapse: separate;
+    border-spacing: 5px 5px;
+
+    font-size: 15px;
+}
+
+.table__tbody .table__tr:hover {
+    background-color: rgba(233,236,239,.2);
+    cursor: pointer;
+}
+
+.table__td {
+    padding-top: 6px;
+    padding-bottom: 4px;
+
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.table__td--sum {
+    text-align: right;
+}
