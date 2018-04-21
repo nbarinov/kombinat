@@ -7,8 +7,8 @@ import { userLogIn, userLogOut } from '../actions';
 export const Profile = connect(
     ({ user }) => ({ user }),
     dispath => ({
-        onLogIn(id) {
-            dispath(userLogIn(id));
+        onLogIn(person) {
+            dispath(userLogIn(person));
         },
         onLogOut() {
             dispath(userLogOut());
