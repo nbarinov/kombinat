@@ -35,9 +35,8 @@ const Profile = ({ className, user, onLogIn }) => {
 
 Profile.propTypes = {
     className: PropTypes.string,
-    // user: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+    user: PropTypes.object,
     onLogIn: PropTypes.func.isRequired,
-    onLogOut: PropTypes.func.isRequired,
 };
 
 export default Profile;
