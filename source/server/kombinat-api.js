@@ -42,6 +42,26 @@ router.get('/person/find', (req, res) => {
     }
 });
 
+router.get('/person/rate/:account', (req, res) => {
+    const account = req.params.account || null;
+
+    try {
+        if(account) {
+            connection.query(`SELECT year, month, sum
+                              FROM rate
+                              WHERE person_account='${account}' ORDER BY rate_id`,
+            (error, results) => {
+                if(error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch(err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/persons', (req, res) => {
     try {
         connection.query(`select p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.balance 
