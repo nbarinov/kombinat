@@ -6,3 +6,33 @@
 .main-menu__item::before {
     content: none;
 }
+
+.main-menu__item--light {
+    font-weight: 200;
+}
+
+.main-menu__button {
+    padding: 0;
+
+    border-width: 0 0 2px 0;
+    border-color: rgba(24,107,170,.15);
+
+    background-color: transparent;
+
+    font-size: 16px;
+    text-decoration: none;
+    color: #186baa;
+
+    transition: all .4s;
+
+    cursor: pointer;
+}
+
+.main-menu__button:focus,
+.main-menu__button:hover {
+    border-bottom-color: rgba(210,96,40,.15);
+
+    color: #d26028;
+    
+    transition: none;
+}
