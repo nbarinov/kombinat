@@ -6,7 +6,7 @@ import { months } from '../../libs/date-helper';
 
 import '../../style/profile.css';
 
-const Profile = ({ className, user, onLogIn, onLogOut }) => {
+const Profile = ({ className, user, onLogIn }) => {
     let PaymentTable = null;
     let RateTable = null;
 
@@ -30,7 +30,6 @@ const Profile = ({ className, user, onLogIn, onLogOut }) => {
             <section className="profile__balance">
                 <h2>{`Итого, ${(user.balance < 0) ? 'задолженность' : 'баланс'} на 1 ${months[new Date().getMonth()]}: ${user.balance}₽`}</h2>
             </section>
-            <button onClick={onLogOut}>Log Out</button>
         </div>;
 };
 

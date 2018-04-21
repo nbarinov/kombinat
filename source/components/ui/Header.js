@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { title } from '../../config';
 import { NavLink } from 'react-router-dom';
-import MainMenu from './MainMenu';
+import { MainMenu } from '../containers';
 
 import '../../style/header.css';
 
