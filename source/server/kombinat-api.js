@@ -62,6 +62,26 @@ router.get('/person/rate/:account', (req, res) => {
     }
 });
 
+router.get('/person/payment/:account', (req, res) => {
+    const account = req.params.account || null;
+
+    try {
+        if (account) {
+            connection.query(`SELECT bank, date_commission dateCommission, sum
+                              FROM payment
+                              WHERE person_account='${account}' ORDER BY payment_id`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/persons', (req, res) => {
     try {
         connection.query(`select p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.balance 
