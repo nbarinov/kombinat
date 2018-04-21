@@ -29,7 +29,7 @@ const addStoreToRequestPipeline = (req, res, next) => {
 };
 
 const makeClientStoreFrom = store => url => ({
-    store: storeFactory(false, store.getState()),
+    store: storeFactory(true, store.getState()),
     url
 });
 
@@ -43,7 +43,7 @@ const renderComponentToHTML = ({ url, store }) => ({
     )
 });
 
-const buildHTMLPage = ({ html, state }) => `
+const buildHTMLPage = ({ html }) => `
     <!DOCTYPE html>
     <html>
         <head>
@@ -53,9 +53,6 @@ const buildHTMLPage = ({ html, state }) => `
         </head>
         <body>
             <div id="react-container">${html}</div>
-            <script>
-                window.__INITIAL_STATE__ = ${JSON.stringify(state)};
-            </script>
             <script src="/bundle.js"></script>
         </body>
     </html>

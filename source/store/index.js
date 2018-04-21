@@ -14,6 +14,8 @@ const clientLogger = store => next => action => {
     console.log('next state', store.getState());
     console.groupEnd();
 
+    localStorage['redux-store'] = JSON.stringify(store.getState());
+
     return result;
 };
 
@@ -33,7 +35,11 @@ const middleware = server => [
 const storeFactory = (server = false, initialState = {}) =>
     applyMiddleware(...middleware(server))(createStore)(
         combineReducers({ user, admin }),
-        initialState
+        (!server) ?
+            (localStorage['redux-store']) ? 
+                JSON.parse(localStorage['redux-store']) :
+                initialState :
+            initialState
     );
 
 export default storeFactory;

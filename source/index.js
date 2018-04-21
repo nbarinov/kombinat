@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '~/components/App'; 
 import storeFactory from './store';
+import initialState from './store/initialState.json';
 
-const store = storeFactory(false, window.__INITIAL_STATE__);
+const store = storeFactory(false, initialState);
 
 window.React = React;
 window.store = store;
