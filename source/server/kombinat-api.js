@@ -101,6 +101,23 @@ router.get('/persons', (req, res) => {
     }
 });
 
+router.get('/schools', (req, res) => {
+    try {
+        connection.query(`SELECT s.tin, s.name schoolName, t.name typeSchool, 
+                          (SELECT COUNT(*) FROM person p WHERE p.tin_school = s.tin) countPerson
+                          FROM school s
+                          INNER JOIN school_type t ON s.type_code = t.type_code`,
+        (error, results) => {
+            if (error) throw error;
+
+            respond(req, res, results);
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/admin/login', (req, res) => {
     const login = decodeURIComponent(req.query.login);
     const password = md5(decodeURIComponent(req.query.password));

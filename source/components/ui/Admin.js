@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import AdminLogInForm from './AdminLogInFrom';
 import AdminMenu from './AdminMenu';
 import AdminPersons from './AdminPersons';
+import AdminSchools from './AdminSchools';
 
 const Admin = ({ className, admin, onLogIn }) => {
     return (!admin) ?
@@ -13,6 +14,7 @@ const Admin = ({ className, admin, onLogIn }) => {
                 <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
             </section>} />
             <Route path="/admin/persons" component={AdminPersons} />
+            <Route path="/admin/schools" component={AdminSchools} />
         </section>;
 };
 
