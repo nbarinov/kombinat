@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import AdminLogInForm from './AdminLogInFrom';
 import AdminMenu from './AdminMenu';
-import DataComponent from '../HOC/DataComponent';
-import List from './List';
-
-const AdminPersons = DataComponent(List, '/api/persons');
+import AdminPersons from './AdminPersons';
 
 const Admin = ({ className, admin, onLogIn }) => {
     return (!admin) ?

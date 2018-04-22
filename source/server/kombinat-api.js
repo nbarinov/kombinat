@@ -87,9 +87,9 @@ router.get('/person/payment/:account', (req, res) => {
 
 router.get('/persons', (req, res) => {
     try {
-        connection.query(`select p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.balance 
-                         from person p
-                         inner join school s on p.tin_school = s.tin`, 
+        connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
+                         FROM person p
+                         INNER JOIN school s ON p.tin_school = s.tin`, 
         (error, results) => {
             if (error) throw error;
 

@@ -22,3 +22,4 @@ export const t = {
 };
 
 export const limitTableRows = 4;
+export const limitPersonRows = 12;
