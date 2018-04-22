@@ -1,17 +1,25 @@
-.main-menu__list {
+.menu__list {
     display: flex;
     justify-content: space-between;
 }
 
-.main-menu__item::before {
+.menu__list--start {
+    justify-content: flex-start;
+}
+
+.menu__list--start .menu__list {
+    margin-right: 1.2em;
+}
+
+.menu__item::before {
     content: none;
 }
 
-.main-menu__item--light {
+.menu__item--light {
     font-weight: 200;
 }
 
-.main-menu__button {
+.menu__button {
     padding: 0;
 
     border-width: 0 0 2px 0;
@@ -28,8 +36,8 @@
     cursor: pointer;
 }
 
-.main-menu__button:focus,
-.main-menu__button:hover {
+.menu__button:focus,
+.menu__button:hover {
     border-bottom-color: rgba(210,96,40,.15);
 
     color: #d26028;
