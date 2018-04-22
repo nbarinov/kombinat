@@ -1,6 +1,4 @@
-const dev = process.env.NODE_ENV !== 'production';
-
-export const server = dev ? 'http://localhost:3000' : '';
+export const title = 'Комбинат школьного питания';
 
 export const dbConfig = {
     host: '',
@@ -8,3 +6,19 @@ export const dbConfig = {
     password: '',
     database: ''
 };
+
+export const t = {
+    bank: 'Банк',
+    date: 'Дата',
+    sum: 'Сумма',
+    year: 'Год',
+    month: 'Месяц',
+    id: 'ID',
+    lastName: 'Фамилия',
+    firstName: 'Имя',
+    middleName: 'Отчество',
+    schoolName: 'Школа',
+    account: 'Лицевой счет',
+};
+
+export const limitTableRows = 4;
