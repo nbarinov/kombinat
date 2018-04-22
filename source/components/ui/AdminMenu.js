@@ -14,6 +14,7 @@ const AdminMenu = ({ className }) =>
             <li className="menu__item"><NavLink to="/admin/persons" activeStyle={selectedStyle}>Дети</NavLink></li>
             <li className="menu__item"><NavLink to="/admin/schools" activeStyle={selectedStyle}>Школы</NavLink></li>
             <li className="menu__item"><NavLink to="/admin/menus" activeStyle={selectedStyle}>Меню</NavLink></li>
+            <li className="menu__item"><NavLink to="/admin/dishes" activeStyle={selectedStyle}>Блюда</NavLink></li>
         </ul>
     </nav>;
 

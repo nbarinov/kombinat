@@ -26,6 +26,12 @@ export const t = {
     menu: 'Меню',
     menuType: 'Тип меню',
     createResp: 'Ответственный',
+    name: 'Наименование',
+    weight: 'Масса нетто',
+    proteins: 'Белки',
+    fats: 'Жиры',
+    carb: 'Углеводы',
+    kcal: 'ккал',
 };
 
 export const limitTableRows = 4;

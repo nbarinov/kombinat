@@ -137,6 +137,22 @@ router.get('/menus', (req, res) => {
     }
 });
 
+router.get('/dishes', (req, res) => {
+    try {
+        connection.query(`SELECT d.name, d.weight, d.proteins, d.fats, d.carb, d.kcal
+                          FROM dish d
+                          ORDER BY d.dish_id DESC`,
+        (error, results) => {
+            if (error) throw error;
+
+            respond(req, res, results);
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/admin/login', (req, res) => {
     const login = decodeURIComponent(req.query.login);
     const password = md5(decodeURIComponent(req.query.password));

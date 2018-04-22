@@ -40,6 +40,42 @@
     font-weight: 200;
 }
 
-.table__td--sum {
+.table__td--sum,
+.table__td--weight,
+.table__td--proteins,
+.table__td--fats,
+.table__td--carb,
+.table__td--kcal {
+    padding-right: 5px;
     text-align: right;
+}
+
+.table__th--weight,
+.table__th--proteins,
+.table__th--fats,
+.table__th--carb,
+.table__th--kcal {
+    padding-left: 12px;
+}
+
+.table__th--weight,
+.table__td--weight {
+    width: 115px;
+}
+
+.table__th--proteins,
+.table__th--fats,
+.table__td--proteins,
+.table__td--fats {
+    width: 65px;
+}
+
+.table__th--carb,
+.table__td--carb {
+    width: 105px;
+}
+
+.table__th--kcal,
+.table__td--kcal {
+    width: 68px;
 }

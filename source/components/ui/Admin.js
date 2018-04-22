@@ -5,6 +5,7 @@ import AdminMenu from './AdminMenu';
 import AdminPersons from './AdminPersons';
 import AdminSchools from './AdminSchools';
 import AdminMenus from './AdminMenus';
+import AdminDishes from './AdminDishes';
 
 import '../../style/admin.css';
 
@@ -19,6 +20,7 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route path="/admin/persons" component={AdminPersons} />
             <Route path="/admin/schools" component={AdminSchools} />
             <Route path="/admin/menus" component={AdminMenus} />
+            <Route path="/admin/dishes" component={AdminDishes} />
         </section>;
 };
 
