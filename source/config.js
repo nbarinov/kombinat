@@ -10,6 +10,7 @@ export const dbConfig = {
 export const t = {
     bank: 'Банк',
     date: 'Дата',
+    dateCreate: 'Дата создания',
     sum: 'Сумма',
     year: 'Год',
     month: 'Месяц',
@@ -22,6 +23,9 @@ export const t = {
     tin: 'ИНН',
     typeSchool: 'Тип учереждения',
     countPerson: 'Количество детей',
+    menu: 'Меню',
+    menuType: 'Тип меню',
+    createResp: 'Ответственный',
 };
 
 export const limitTableRows = 4;
