@@ -125,7 +125,7 @@ router.get('/menus', (req, res) => {
                           INNER JOIN menu_type t ON m.type_code = t.type_code
                           INNER JOIN school s ON m.tin_school = s.tin
                           INNER JOIN responsible r ON m.responsible_pn = r.personnel_number
-                          ORDER BY m.use_date DESC, m.create_date`,
+                          ORDER BY m.use_date DESC, m.create_date, m.type_code`,
         (error, results) => {
             if (error) throw error;
 
