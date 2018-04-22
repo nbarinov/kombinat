@@ -49,7 +49,7 @@ class Table extends Component {
                             <tr key={row} className="table__tr">
                                 {headers.map((head, col) =>
                                     <td key={col} className={`table__td  table__td--${head}`}>
-                                        {(head === 'date') ? dateFormatDote(item[head]) : item[head]}
+                                        {(head.includes('date')) ? dateFormatDote(item[head]) : item[head]}
                                     </td>
                                 )}
                             </tr>
