@@ -5,6 +5,8 @@ import AdminMenu from './AdminMenu';
 import AdminPersons from './AdminPersons';
 import AdminSchools from './AdminSchools';
 
+import '../../style/admin.css';
+
 const Admin = ({ className, admin, onLogIn }) => {
     return (!admin) ?
         <AdminLogInForm className="login-form--center" onLogIn={onLogIn} /> :
