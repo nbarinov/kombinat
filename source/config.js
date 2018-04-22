@@ -19,6 +19,9 @@ export const t = {
     middleName: 'Отчество',
     schoolName: 'Школа',
     account: 'Лицевой счет',
+    tin: 'ИНН',
+    typeSchool: 'Тип учереждения',
+    countPerson: 'Количество детей',
 };
 
 export const limitTableRows = 4;
