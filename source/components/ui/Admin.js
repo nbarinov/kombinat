@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import AdminLogInForm from './AdminLogInFrom';
+import AdminMenu from './AdminMenu';
 import DataComponent from '../HOC/DataComponent';
 import List from './List';
 
@@ -9,7 +10,8 @@ const AdminPersons = DataComponent(List, '/api/persons');
 const Admin = ({ className, admin, onLogIn }) => {
     return (!admin) ?
         <AdminLogInForm className="login-form--center" onLogIn={onLogIn} /> :
-        <section className={className}>
+        <section className={(className) ? `${className} admin` : 'admin'}>
+            <AdminMenu className="admin__menu" />
             <Route exact path="/admin" render={() => <section>
                 <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
             </section>} />
