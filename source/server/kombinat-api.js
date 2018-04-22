@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import mysql from 'mysql';
 import { dbConfig } from '../config';
+import md5 from 'md5';
 
 const router = new Router();
 const connection = mysql.createConnection(dbConfig);
@@ -95,6 +96,27 @@ router.get('/persons', (req, res) => {
             respond(req, res, results);
         });
     } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
+router.get('/admin/login', (req, res) => {
+    const login = decodeURIComponent(req.query.login);
+    const password = md5(decodeURIComponent(req.query.password));
+
+    try {
+        if (login && password) {
+            connection.query(`SELECT login, email, fname, role
+                              FROM users
+                              WHERE login='${login}' AND password='${password}'`, 
+            (error, results) => {
+                if(error) throw error;
+
+                respond(req, res, results);
+            });
+        }
+    } catch(err) {
         console.log(err.message);
         console.log(err.stack);
     }

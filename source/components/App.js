@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
 
-import { Profile } from './containers';
+import { Profile, Admin } from './containers';
 import DataComponent from './HOC/DataComponent';
 import List from './ui/List';
 import Header from './ui/Header';
@@ -15,6 +15,7 @@ const App = () => (
         <Header className="app__header" />
         <Switch>
             <Route exact path="/" component={PersonsList} />
+            <Route path="/admin" component={Admin} />
             <Route path="/profile" component={Profile} />
             <Route component={Whoops404} />
         </Switch>

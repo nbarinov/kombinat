@@ -4,8 +4,9 @@ import { compose } from 'redux';
 
 import ProfileUI from './ui/Profile';
 import MainMenuUI from './ui/MainMenu';
+import AdminUI from './ui/Admin';
 
-import { userLogIn, userLogOut } from '../actions';
+import { userLogIn, userLogOut, adminLogIn } from '../actions';
 
 export const Profile = connect(
     ({ user }) => ({ user }),
@@ -27,3 +28,12 @@ export const MainMenu = compose(
         })
     )
 )(MainMenuUI);
+
+export const Admin = connect(
+    ({ admin }) => ({ admin }),
+    dispath => ({
+        onLogIn(user) {
+            dispath(adminLogIn(user));
+        }
+    })
+)(AdminUI);
