@@ -30,6 +30,10 @@ class Table extends Component {
         };
     }
 
+    componentWillMount() {
+        this.setState(this.initialState());
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         return this.state.data.length !== nextState.data || this.state.limit !== nextState.limit;
     }
