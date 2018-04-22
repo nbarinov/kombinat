@@ -14,10 +14,10 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route exact path="/admin" render={() => <section>
                 <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
             </section>} />
-            <Route path="/admin/persons" component={() => <AdminContainer url="/api/persons" />} />
-            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools" />} />
-            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus" />} />
-            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes" />} />
+            <Route path="/admin/persons" component={() => <AdminContainer url="/api/persons" search={true} />} />
+            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools" search={true} />} />
+            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus" search={true} />} />
+            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes" search={true} />} />
         </section>;
 };
 

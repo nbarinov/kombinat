@@ -1,4 +1,6 @@
-.table-container {}
+.table-container__search {
+    margin-bottom: 1.5em;
+}
 
 .table-container__p--center {
     text-align: center;
