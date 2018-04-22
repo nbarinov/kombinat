@@ -118,6 +118,25 @@ router.get('/schools', (req, res) => {
     }
 });
 
+router.get('/menus', (req, res) => {
+    try {
+        connection.query(`SELECT m.use_date date, m.create_date dateCreate, t.name menuType, s.name schoolName, r.fio createResp
+                          FROM menu m
+                          INNER JOIN menu_type t ON m.type_code = t.type_code
+                          INNER JOIN school s ON m.tin_school = s.tin
+                          INNER JOIN responsible r ON m.responsible_pn = r.personnel_number
+                          ORDER BY m.use_date DESC, m.create_date`,
+        (error, results) => {
+            if (error) throw error;
+
+            respond(req, res, results);
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/admin/login', (req, res) => {
     const login = decodeURIComponent(req.query.login);
     const password = md5(decodeURIComponent(req.query.password));
