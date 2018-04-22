@@ -9,7 +9,7 @@ class Table extends Component {
     constructor(props) {
         super(props);
 
-        const limit = limitTableRows;
+        const limit = this.props.limit || limitTableRows;
         const data = (this.props.data.length > limit) ? this.props.data.slice(0, limit) : this.props.data;
         this.headers = Object.keys(this.props.data[0] || {});
 
@@ -72,6 +72,7 @@ class Table extends Component {
 
 Table.propTypes = {
     className: PropTypes.string,
+    limit: PropTypes.number,
     data: PropTypes.array.isRequired,
 };
 
