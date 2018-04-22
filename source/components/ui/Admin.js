@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import AdminLogInForm from './AdminLogInFrom';
 import AdminMenu from './AdminMenu';
-import AdminPersons from './AdminPersons';
-import AdminSchools from './AdminSchools';
-import AdminMenus from './AdminMenus';
-import AdminDishes from './AdminDishes';
+import AdminContainer from './AdminContainer';
 
 import '../../style/admin.css';
 
@@ -17,10 +14,10 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route exact path="/admin" render={() => <section>
                 <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
             </section>} />
-            <Route path="/admin/persons" component={AdminPersons} />
-            <Route path="/admin/schools" component={AdminSchools} />
-            <Route path="/admin/menus" component={AdminMenus} />
-            <Route path="/admin/dishes" component={AdminDishes} />
+            <Route path="/admin/persons" component={() => <AdminContainer url="/api/persons" />} />
+            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools" />} />
+            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus" />} />
+            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes" />} />
         </section>;
 };
 
