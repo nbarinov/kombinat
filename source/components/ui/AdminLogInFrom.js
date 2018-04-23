@@ -50,7 +50,7 @@ class AdminLogInForm extends Component {
                         error: 'Пользователь не найден'
                     });
                 }
-            })
+            });
     }
 
     render() {
