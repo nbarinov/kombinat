@@ -2,6 +2,6 @@
     padding-right: 0;
 }
 
-.view-container__info--pr3 {
-    padding-right: 3em;
+.view-container__info {
+    display: block;
 }

@@ -18,16 +18,16 @@ const PersonView = ({ data }) => {
     }
 
     return (
-        <section className="view-container">
+        <section className="view-container view-container__section--pr0">
             {(person) ? (
                 <div className="view-container__wrapper">
                     <section className="view-container__section view-container__section--pr0">
                         <h2 className="view-container__title">Информация о ребенке л/с {person.account}</h2>
-                        <TableVertical data={person} className="view-container__info view-container__info--pr3" />
+                        <TableVertical data={person} className="view-container__info" />
                     </section>
                     <section className="view-container__section">
                         <h2 className="view-container__title">Законный представитель</h2>
-                        <ParentTable className="view-container__payment" />
+                        <ParentTable className="view-container__parent" />
                     </section>
                     <section className="view-container__section">
                         <h2 className="view-container__title">Платежи</h2>
