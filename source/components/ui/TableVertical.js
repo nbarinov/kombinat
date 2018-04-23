@@ -4,7 +4,8 @@ import { dateFormatDote } from '../../libs/date-helper';
 
 import '../../style/ui/table.css';
 
-const TableVerical = ({ className, data }) => {
+const TableVerical = ({ className, data: initialData }) => {
+    const data = Array.isArray(initialData) ? initialData[0] : initialData;
     const headers = Object.keys(data || {});
 
     return (
