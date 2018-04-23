@@ -85,6 +85,27 @@ router.get('/person/payment/:account', (req, res) => {
     }
 });
 
+router.get('/person/view/:account', (req, res) => {
+    const account = req.params.account || null;
+
+    try {
+        if (account) {
+            connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
+                              FROM person p
+                              INNER JOIN school s ON p.tin_school = s.tin
+                              WHERE p.person_account='${account}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/persons', (req, res) => {
     try {
         connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
