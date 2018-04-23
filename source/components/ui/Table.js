@@ -66,7 +66,7 @@ class Table extends Component {
     }
 
     render() {
-        const { className, search } = this.props;
+        const { className, search, commands } = this.props;
         const { initialData, data, limit } = this.state;
         const { headers, increase, onChangeSearch } = this;
 
@@ -79,6 +79,7 @@ class Table extends Component {
                     <thead className="table__thead">
                         <tr className="table__tr">
                             {headers.map((item, i) => <th key={i} className={`table__th table__th--${item}`}>{t[item]}</th>)}
+                            {(commands.length > 0) ? <th className="table__th">Действия</th> : ''}
                         </tr>
                     </thead>
                     <tbody className="table__tbody">
@@ -89,6 +90,13 @@ class Table extends Component {
                                         {(head.includes('date')) ? dateFormatDote(item[head]) : item[head]}
                                     </td>
                                 )}
+                                {(commands.length > 0) ? 
+                                    <td className="table__icons">
+                                        {commands.map((command, commandId) => 
+                                            <p key={commandId} className={`table__icon table__icon--${command.name}`} onClick={() => command.func(item)}>{command.name}</p>
+                                        )}
+                                    </td> : 
+                                    ''}
                             </tr>
                         )}
                     </tbody>
@@ -118,6 +126,7 @@ Table.defaultProps = {
     className: '',
     limit: limitTableRows,
     search: false,
+    commands: [],
 };
 
 export default Table;

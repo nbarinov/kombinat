@@ -81,3 +81,32 @@
 .table__td--kcal {
     width: 68px;
 }
+
+.table__icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table__icon {
+    display: block;
+    
+    width: 25px;
+    height: 25px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    cursor: pointer;
+}
+
+.table__icon--view {
+    /* background-image: url('../assets/images/view-icon.png'); */
+}
+
+.table__icon--edit {
+    /* background-image: url('../assets/images/edit-icon.png'); */
+}
+
+.table__icon--delete {
+    /* background-image: url('../assets/images/delete-icon.png'); */
+}
