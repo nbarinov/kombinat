@@ -2,6 +2,8 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 
 import App from '~/components/App'; 
 import storeFactory from './store';
@@ -12,10 +14,19 @@ const store = storeFactory(false, initialState);
 window.React = React;
 window.store = store;
 
+const alertOptions = {
+    position: 'bottom center',
+    timeout: 5000,
+    offset: '30px',
+    transition: 'scale'
+};
+
 hydrate(
-    <Provider store={store}>
+    <Provider store={store} template={AlertTemplate}>
         <BrowserRouter>
-            <App />
+            <AlertProvider template={AlertTemplate} {...alertOptions}>
+                <App />
+            </AlertProvider>
         </BrowserRouter>
     </Provider>,
     document.getElementById('react-container')

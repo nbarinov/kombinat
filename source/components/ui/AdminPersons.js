@@ -1,32 +1,69 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import AdminContainer from './AdminContainer';
+import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { withAlert } from 'react-alert';
+import fetch from 'isomorphic-fetch';
 
-const AdminPersons = ({ history }) => {
-    const viewPerson = (person) => {
-        history.push(`/admin/person/view/${person.account}`);
-    };
+class AdminPersons extends Component {
+    constructor(props) {
+        super(props);
 
-    const commands = [
-        {
-            name: 'view',
-            func: viewPerson,
-        },
-        {
-            name: 'edit',
-            func: f => f,
-        },
-        {
-            name: 'delete',
-            func: f => f,
-        },
-    ];
+        this.viewPerson = this.viewPerson.bind(this);
+        this.deletePerson = this.deletePerson.bind(this);
 
-    return <AdminContainer url="/api/persons/list" search={true} commands={commands} />;
-};
+        this.commands = [
+            {
+                name: 'view',
+                func: this.viewPerson,
+            },
+            {
+                name: 'edit',
+                func: f => f,
+            },
+            {
+                name: 'delete',
+                func: this.deletePerson,
+            },
+        ];
+    }
+
+    viewPerson(person) {
+        this.props.history.push(`/admin/persons/view/${person.account}`);
+    }
+
+    deletePerson(person) {
+        const toDelete = confirm(`Удалить ${person.lastName} ${person.firstName} ${person.middleName}?`);
+
+        if (toDelete) {
+            fetch(`/api/persons/delete/${person.account}`, {
+                method: 'delete',
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.affectedRows > 0) {
+                        this.props.alert.success('Ребенок удален');
+                    } else {
+                        this.props.alert.alert('Ребенок не удален');
+                    }
+                })
+                .catch(e => this.props.alert.error(`Что-то пошло не так... ${e}`));
+        }
+    }
+
+    render() {
+        const { commands } = this;
+
+        return <AdminContainer url="/api/persons/list" search={true} commands={commands} />;
+    }
+}
 
 AdminPersons.propTypes = {
     className: PropTypes.string,
 };
 
-export default withRouter(AdminPersons);
+export default compose(
+    withRouter,
+    withAlert
+)(AdminPersons);

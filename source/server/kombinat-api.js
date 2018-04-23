@@ -143,6 +143,25 @@ router.get('/persons/list', (req, res) => {
     }
 });
 
+router.delete('/persons/delete/:account', (req, res) => {
+    const account = req.params.account || null;
+
+    try {
+        if (account) {
+            connection.query(`DELETE FROM person
+                              WHERE person_account='${account}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/schools/list', (req, res) => {
     try {
         connection.query(`SELECT s.tin, s.name schoolName, t.name typeSchool, 
