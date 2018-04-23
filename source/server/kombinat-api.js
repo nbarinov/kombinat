@@ -126,7 +126,7 @@ router.get('/parent/find/:id', (req, res) => {
     }
 });
 
-router.get('/persons', (req, res) => {
+router.get('/persons/list', (req, res) => {
     try {
         connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
                          FROM person p
@@ -142,7 +142,7 @@ router.get('/persons', (req, res) => {
     }
 });
 
-router.get('/schools', (req, res) => {
+router.get('/schools/list', (req, res) => {
     try {
         connection.query(`SELECT s.tin, s.name schoolName, t.name typeSchool, 
                           (SELECT COUNT(*) FROM person p WHERE p.tin_school = s.tin) countPerson
@@ -159,7 +159,7 @@ router.get('/schools', (req, res) => {
     }
 });
 
-router.get('/menus', (req, res) => {
+router.get('/menus/list', (req, res) => {
     try {
         connection.query(`SELECT m.use_date date, m.create_date dateCreate, t.name menuType, s.name schoolName, r.fio createResp
                           FROM menu m
@@ -178,7 +178,7 @@ router.get('/menus', (req, res) => {
     }
 });
 
-router.get('/dishes', (req, res) => {
+router.get('/dishes/list', (req, res) => {
     try {
         connection.query(`SELECT d.name, d.weight, d.proteins, d.fats, d.carb, d.kcal
                           FROM dish d

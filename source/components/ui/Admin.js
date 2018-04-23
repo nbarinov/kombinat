@@ -18,9 +18,9 @@ const Admin = ({ className, admin, onLogIn }) => {
             </section>} />
             <Route path="/admin/persons" component={AdminPersons} />
             <Route path="/admin/person/view/:account" render={routeProps => <AdminPerson {...routeProps} />} />
-            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools" search={true} />} />
-            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus" search={true} />} />
-            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes" search={true} />} />
+            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools/list" search={true} />} />
+            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus/list" search={true} />} />
+            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
         </section>;
 };
 

@@ -22,7 +22,7 @@ const AdminPersons = ({ history }) => {
         },
     ];
 
-    return <AdminContainer url="/api/persons" search={true} commands={commands} />;
+    return <AdminContainer url="/api/persons/list" search={true} commands={commands} />;
 };
 
 AdminPersons.propTypes = {
