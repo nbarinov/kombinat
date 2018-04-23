@@ -13,7 +13,7 @@ const DataComponent = (ComposedComponent, url) => (
             };
         }
 
-        componentDidMount() {
+        componentWillMount() {
             this.setState({ loading: true });
 
             fetch(url)
