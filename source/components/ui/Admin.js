@@ -16,11 +16,11 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route exact path="/admin" render={() => <section>
                 <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
             </section>} />
-            <Route path="/admin/persons" component={AdminPersons} />
-            <Route path="/admin/person/view/:account" render={routeProps => <AdminPerson {...routeProps} />} />
-            <Route path="/admin/schools" component={() => <AdminContainer url="/api/schools/list" search={true} />} />
-            <Route path="/admin/menus" component={() => <AdminContainer url="/api/menus/list" search={true} />} />
-            <Route path="/admin/dishes" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
+            <Route path="/admin/persons/list" component={AdminPersons} />
+            <Route path="/admin/persons/view/:account" render={routeProps => <AdminPerson {...routeProps} />} />
+            <Route path="/admin/schools/list" component={() => <AdminContainer url="/api/schools/list" search={true} />} />
+            <Route path="/admin/menus/list" component={() => <AdminContainer url="/api/menus/list" search={true} />} />
+            <Route path="/admin/dishes/list" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
         </section>;
 };
 
