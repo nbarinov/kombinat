@@ -2,6 +2,7 @@ import { Router } from 'express';
 import mysql from 'mysql';
 import { dbConfig } from '../config';
 import md5 from 'md5';
+import { copyFileSync } from 'fs';
 
 const router = new Router();
 const connection = mysql.createConnection(dbConfig);
@@ -194,10 +195,10 @@ router.get('/dishes/list', (req, res) => {
     }
 });
 
-router.get('/admin/login', (req, res) => {
-    const login = decodeURIComponent(req.query.login);
-    const password = md5(decodeURIComponent(req.query.password));
-
+router.post('/admin/login', (req, res) => {
+    const login = req.body.login.trim();
+    const password = md5(req.body.password.trim());
+    
     try {
         if (login && password) {
             connection.query(`SELECT login, email, fname, role

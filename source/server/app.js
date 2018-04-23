@@ -70,6 +70,9 @@ export default express()
     .use(logger)
     .use(fileAssets)
     .use(bodyParser.json())
+    .use(bodyParser.urlencoded({
+        extended: true
+    }))
     .use(addStoreToRequestPipeline)
     .use('/api', api)
     .use(respond);

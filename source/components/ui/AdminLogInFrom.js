@@ -39,7 +39,15 @@ class AdminLogInForm extends Component {
             });
         }
 
-        fetch(`/api/admin/login/?login=${encodeURIComponent(_login)}&password=${encodeURIComponent(_password)}`)
+        fetch('/api/admin/login/', {
+            credentials: 'include',
+            method: 'post',
+            headers: {
+                'Accept': 'application/json, application/xml, text/play, text/html, *.*',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+            },
+            body: `login=${_login}&password=${_password}`
+        })
             .then(response => response.json())
             .then(data => data[0])
             .then(user => {
