@@ -4,7 +4,7 @@
   "description": "Курсовой проект по дисциплине \"Базы данных\" на тему \"Комбинат школьного питания\"",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --progress",
+    "build": "./node_modules/.bin/webpack --progress && cp -pR source/images dist/assets/images",
     "prestart": "npm run build",
     "start": "./node_modules/.bin/babel-node ./source/server",
     "lint": "./node_modules/.bin/eslint .; exit 0"
