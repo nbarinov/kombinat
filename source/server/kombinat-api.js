@@ -90,7 +90,7 @@ router.get('/person/view/:account', (req, res) => {
 
     try {
         if (account) {
-            connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
+            connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account, p.balance, p.parent_id pId
                               FROM person p
                               INNER JOIN school s ON p.tin_school = s.tin
                               WHERE p.person_account='${account}'`,
