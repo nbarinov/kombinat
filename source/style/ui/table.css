@@ -22,11 +22,20 @@
 .table__th {
     padding-bottom: 6px;
 
-    border-bottom: 1px solid #e9ecef;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #e9ecef;
     border-collapse: separate;
     border-spacing: 5px 5px;
 
     font-size: 15px;
+}
+
+.table__th--vertical {
+    padding-top: 6px;
+    padding-right: 6px;
+    border-width: 0 1px 0 0;
+    text-align: right;
 }
 
 .table__tbody .table__tr:hover {
@@ -40,6 +49,10 @@
 
     font-size: 15px;
     font-weight: 200;
+}
+
+.table__td--vertical {
+    padding-left: 6px;
 }
 
 .table__td--sum,
