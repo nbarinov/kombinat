@@ -111,7 +111,7 @@ router.get('/parent/find/:id', (req, res) => {
 
     try {
         if (id) {
-            connection.query(`SELECT p.fio parentFio
+            connection.query(`SELECT p.fio
                               FROM parent p
                               WHERE p.parent_id='${id}'`,
             (error, results) => {

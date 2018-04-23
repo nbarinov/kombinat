@@ -32,6 +32,8 @@ export const t = {
     fats: 'Жиры',
     carb: 'Углеводы',
     kcal: 'ккал',
+    fio: 'ФИО',
+    balance: 'Баланс',
 };
 
 export const limitTableRows = 4;
