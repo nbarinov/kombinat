@@ -66,50 +66,55 @@ class Table extends Component {
     }
 
     render() {
-        const { className, search, commands } = this.props;
+        const { className, search, commands, data: initialDataProp } = this.props;
         const { initialData, data, limit } = this.state;
         const { headers, increase, onChangeSearch } = this;
 
         return (
             <div className="table-container">
-                {(search) ? 
-                    <input type="text" name="q" className="table-container__search input" onChange={onChangeSearch} placeholder="Поиск по таблице..." /> : 
-                    ''}
-                <table className={(className) ? `${className} table` : 'table'}>
-                    <thead className="table__thead">
-                        <tr className="table__tr">
-                            {headers.map((item, i) => <th key={i} className={`table__th table__th--${item}`}>{t[item]}</th>)}
-                            {(commands.length > 0) ? <th className="table__th">Действия</th> : ''}
-                        </tr>
-                    </thead>
-                    <tbody className="table__tbody">
-                        {data.map((item, row) =>
-                            <tr key={row} className="table__tr">
-                                {headers.map((head, col) =>
-                                    <td key={col} className={`table__td  table__td--${head}`}>
-                                        {(head.includes('date')) ? dateFormatDote(item[head]) : item[head]}
-                                    </td>
-                                )}
-                                {(commands.length > 0) ? 
-                                    <td className="table__icons">
-                                        {commands.map((command, commandId) => 
-                                            <p key={commandId} className={`table__icon table__icon--${command.name}`} onClick={() => command.func(item)}>{command.name}</p>
+                {(initialDataProp.length === 0) ?
+                    <p className="table-container__p table-container__p--italic table-container__p--center">Данные отсутствуют</p> :
+                    <div className="table-container__wrapper">
+                        {(search) ? 
+                            <input type="text" name="q" className="table-container__search input" onChange={onChangeSearch} placeholder="Поиск по таблице..." /> : 
+                            ''}
+                        <table className={(className) ? `${className} table` : 'table'}>
+                            <thead className="table__thead">
+                                <tr className="table__tr">
+                                    {headers.map((item, i) => <th key={i} className={`table__th table__th--${item}`}>{t[item]}</th>)}
+                                    {(commands.length > 0) ? <th className="table__th">Действия</th> : ''}
+                                </tr>
+                            </thead>
+                            <tbody className="table__tbody">
+                                {data.map((item, row) =>
+                                    <tr key={row} className="table__tr">
+                                        {headers.map((head, col) =>
+                                            <td key={col} className={`table__td  table__td--${head}`}>
+                                                {(head.includes('date')) ? dateFormatDote(item[head]) : item[head]}
+                                            </td>
                                         )}
-                                    </td> : 
-                                    ''}
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-                {(limit < initialData.length) ?
-                    <p className="table-container__p table-container__p--center">
-                        <button 
-                            className="table-container__button" 
-                            type="button"
-                            onClick={increase}
-                        >Показать еще...</button>
-                    </p> :
-                    ''}
+                                        {(commands.length > 0) ? 
+                                            <td className="table__icons">
+                                                {commands.map((command, commandId) => 
+                                                    <p key={commandId} className={`table__icon table__icon--${command.name}`} onClick={() => command.func(item)}>{command.name}</p>
+                                                )}
+                                            </td> : 
+                                            ''}
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                        {(data.length === 0) ? <p className="table-container__p table-container__p--italic table-container__p--center table-container__p--pt">По вашему запросу ничего не найдено </p> : ''}
+                        {(limit < initialData.length) ?
+                            <p className="table-container__p table-container__p--center table-container__p--pt">
+                                <button 
+                                    className="table-container__button" 
+                                    type="button"
+                                    onClick={increase}
+                                >Показать еще...</button>
+                            </p> :
+                            ''}
+                    </div>}
             </div>
         );
     }

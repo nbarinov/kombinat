@@ -2,8 +2,21 @@
     margin-bottom: 1.5em;
 }
 
+.table-container__p {
+    font-size: 14px;
+    color: #adb5bd;
+}
+
+.table-container__p--italic {
+    font-style: italic;
+}
+
 .table-container__p--center {
     text-align: center;
+}
+
+.table-container__p--pt {
+    padding-top: 2em;
 }
 
 .table-container__button {
