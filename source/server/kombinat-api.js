@@ -106,6 +106,26 @@ router.get('/person/view/:account', (req, res) => {
     }
 });
 
+router.get('/parent/find/:id', (req, res) => {
+    const id = req.params.id || null;
+
+    try {
+        if (id) {
+            connection.query(`SELECT p.fio parentFio
+                              FROM parent p
+                              WHERE p.parent_id='${id}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/persons', (req, res) => {
     try {
         connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, s.name schoolName, p.person_account account
