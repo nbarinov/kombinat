@@ -7,6 +7,8 @@ import AdminPersons from './AdminPersons';
 import AdminPersonView from './AdminPersonView';
 import AdminMenus from './AdminMenus';
 import AdminMenusView from './AdminMenusView';
+import AdminSchools from './AdminSchools';
+import AdminSchoolsView from './AdminSchoolsView';
 import AdminContainer from './AdminContainer';
 import Whoops404 from './Whoops404';
 
@@ -23,7 +25,8 @@ const Admin = ({ className, admin, onLogIn }) => {
                 </section>} />
                 <Route path="/admin/persons/list" component={AdminPersons} />
                 <Route path="/admin/persons/view/:account" render={routeProps => <AdminPersonView {...routeProps} />} />
-                <Route path="/admin/schools/list" component={() => <AdminContainer url="/api/schools/list" search={true} />} />
+                <Route path="/admin/schools/list" component={AdminSchools} />
+                <Route path="/admin/schools/view/:tin" render={routeProps => <AdminSchoolsView {...routeProps} />} />
                 <Route path="/admin/menus/list" component={AdminMenus} />
                 <Route path="/admin/menus/view/:id" render={routeProps => <AdminMenusView {...routeProps} />} />
                 <Route path="/admin/dishes/list" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
