@@ -2,7 +2,6 @@ import { Router } from 'express';
 import mysql from 'mysql';
 import { dbConfig } from '../config';
 import md5 from 'md5';
-import { copyFileSync } from 'fs';
 
 const router = new Router();
 const connection = mysql.createConnection(dbConfig);
@@ -181,7 +180,8 @@ router.get('/schools/list', (req, res) => {
 
 router.get('/menus/list', (req, res) => {
     try {
-        connection.query(`SELECT m.use_date date, m.create_date dateCreate, t.name menuType, s.name schoolName, r.fio createResp
+        connection.query(`SELECT m.menu_id id, m.use_date date, m.create_date dateCreate, t.name menuType, 
+                          s.name schoolName, r.fio createResp
                           FROM menu m
                           INNER JOIN menu_type t ON m.type_code = t.type_code
                           INNER JOIN school s ON m.tin_school = s.tin
