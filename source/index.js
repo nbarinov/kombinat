@@ -15,7 +15,7 @@ window.React = React;
 window.store = store;
 
 const alertOptions = {
-    position: 'bottom center',
+    position: 'bottom right',
     timeout: 5000,
     offset: '30px',
     transition: 'scale'
