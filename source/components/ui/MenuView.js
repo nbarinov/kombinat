@@ -6,10 +6,7 @@ import TableVertical from './TableVertical';
 import '../../style/view-container.css';
 
 const MenuView = ({ data }) => {
-    console.log(data[0]);
-    const { menuId, ...menu} = data[0];
-    console.log(menuId, menu);
-
+    const { menuId, ...menu } = data[0];
     let DishesTable = null;
 
     if (menu) {
