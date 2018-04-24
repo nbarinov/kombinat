@@ -222,6 +222,26 @@ router.get('/menus/view/:id', (req, res) => {
     }
 });
 
+router.get('/dishes/list/:menu', (req, res) => {
+    const menu = req.params.menu || null;
+
+    try {
+        connection.query(`SELECT d.name as dish, d.weight, d.proteins, d.fats, d.carb, d.kcal
+                          FROM menu m
+                          INNER JOIN menu_dishes md ON m.menu_id = md.menu_id
+                          INNER JOIN dish d ON md.dish_id = d.dish_id
+                          WHERE m.menu_id='${menu}';`,
+        (error, results) => {
+            if (error) throw error;
+
+            respond(req, res, results);
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/dishes/list', (req, res) => {
     try {
         connection.query(`SELECT d.name, d.weight, d.proteins, d.fats, d.carb, d.kcal
