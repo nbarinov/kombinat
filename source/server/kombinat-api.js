@@ -178,6 +178,28 @@ router.get('/schools/list', (req, res) => {
     }
 });
 
+router.get('/schools/view/:tin', (req, res) => {
+    const tin = req.params.tin || null;
+
+    try {
+        if (tin) {
+            connection.query(`SELECT s.tin, s.name schoolName, t.name typeSchool, 
+                              (SELECT COUNT(*) FROM person p WHERE p.tin_school = s.tin) countPerson
+                              FROM school s
+                              INNER JOIN school_type t ON s.type_code = t.type_code
+                              WHERE s.tin='${tin}';`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/menus/list', (req, res) => {
     try {
         connection.query(`SELECT m.menu_id id, m.use_date date, m.create_date dateCreate, t.name menuType, 
