@@ -20,7 +20,7 @@ const MenuView = ({ data }) => {
         <section className="view-container view-container__section--pr0">
             {(menu) ? (
                 <div className="view-container__wrapper">
-                    <section className="view-container__section view-container__section--pr0">
+                    <section className="view-container__section">
                         <h2 className="view-container__title">Информация о меню</h2>
                         <TableVertical data={menu} className="view-container__info" />
                     </section>
