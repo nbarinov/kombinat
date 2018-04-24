@@ -198,6 +198,30 @@ router.get('/menus/list', (req, res) => {
     }
 });
 
+router.get('/menus/view/:id', (req, res) => {
+    const id = req.params.id || null;
+
+    try {
+        if (id) {
+            connection.query(`SELECT m.menu_id menuId, m.create_date dateCreate, m.use_date date,
+                              s.name schoolName, mt.name menuType, r.fio createResp
+                              FROM menu m
+                              INNER JOIN menu_type mt ON mt.type_code = m.type_code
+                              INNER JOIN responsible r ON r.personnel_number = m.responsible_pn
+                              INNER JOIN school s ON s.tin = m.tin_school
+                              WHERE m.menu_id='${id}';`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/dishes/list', (req, res) => {
     try {
         connection.query(`SELECT d.name, d.weight, d.proteins, d.fats, d.carb, d.kcal
