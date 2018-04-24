@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import AdminContainer from './AdminContainer';
 import { compose } from 'redux';
@@ -6,34 +5,12 @@ import { withRouter } from 'react-router-dom';
 import { withAlert } from 'react-alert';
 import fetch from 'isomorphic-fetch';
 
-class AdminPersons extends Component {
-    constructor(props) {
-        super(props);
+const AdminPersons = ({ className, history, alert }) => {
+    const viewPerson = person => {
+        history.push(`/admin/persons/view/${person.account}`);
+    };
 
-        this.viewPerson = this.viewPerson.bind(this);
-        this.deletePerson = this.deletePerson.bind(this);
-
-        this.commands = [
-            {
-                name: 'view',
-                func: this.viewPerson,
-            },
-            {
-                name: 'edit',
-                func: f => f,
-            },
-            {
-                name: 'delete',
-                func: this.deletePerson,
-            },
-        ];
-    }
-
-    viewPerson(person) {
-        this.props.history.push(`/admin/persons/view/${person.account}`);
-    }
-
-    deletePerson(person) {
+    const deletePerson = person => {
         const toDelete = confirm(`Удалить ${person.lastName} ${person.firstName} ${person.middleName}?`);
 
         if (toDelete) {
@@ -43,24 +20,37 @@ class AdminPersons extends Component {
                 .then(response => response.json())
                 .then(result => {
                     if (result.affectedRows > 0) {
-                        this.props.alert.success('Ребенок удален');
+                        alert.success('Ребенок удален');
                     } else {
-                        this.props.alert.alert('Ребенок не удален');
+                        alert.alert('Ребенок не удален');
                     }
                 })
-                .catch(e => this.props.alert.error(`Что-то пошло не так... ${e}`));
+                .catch(e => alert.error(`Что-то пошло не так... ${e}`));
         }
-    }
+    };
 
-    render() {
-        const { commands } = this;
+    const commands = [
+        {
+            name: 'view',
+            func: viewPerson,
+        },
+        {
+            name: 'edit',
+            func: f => f,
+        },
+        {
+            name: 'delete',
+            func: deletePerson,
+        },
+    ];
 
-        return <AdminContainer url="/api/persons/list" search={true} commands={commands} />;
-    }
-}
+    return <AdminContainer url="/api/persons/list" className={className} search={true} commands={commands} />;
+};
 
 AdminPersons.propTypes = {
     className: PropTypes.string,
+    history: PropTypes.object.isRequired,
+    alert: PropTypes.object.isRequired,
 };
 
 export default compose(
