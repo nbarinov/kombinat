@@ -221,6 +221,25 @@ router.get('/lease/view/:tin', (req, res) => {
     }
 });
 
+router.get('/contracts/list', (req, res) => {
+    try {
+        connection.query(`SELECT c.contract_number contractId, parent.fio fioParent, CONCAT(person.lname, ' ', person.fname) fioPerson,
+                          c.create_date dateCreate, c.signing_date dateSigning, s.name status
+                          FROM contract_parent c
+                          INNER JOIN parent ON parent.parent_id = c.parent_id
+                          INNER JOIN person ON c.contract_number = person.person_account
+                          INNER JOIN contract_status s ON s.status_code = c.status_code`,
+        (error, results) => {
+            if (error) throw error;
+
+            respond(req, res, results);
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/menus/list', (req, res) => {
     try {
         connection.query(`SELECT m.menu_id id, m.use_date date, m.create_date dateCreate, t.name menuType, 
