@@ -222,6 +222,25 @@ router.get('/menus/view/:id', (req, res) => {
     }
 });
 
+router.delete('/menus/delete/:id', (req, res) => {
+    const id = req.params.id || null;
+
+    try {
+        if (id) {
+            connection.query(`DELETE FROM menu
+                              WHERE menu_id='${id}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/dishes/list/:menu', (req, res) => {
     const menu = req.params.menu || null;
 
