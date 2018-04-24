@@ -1,3 +1,7 @@
 .admin-container--pr0 {
     padding-right: 0;
 }
+
+.admin-container--w95 {
+    max-width: 95%;
+}
