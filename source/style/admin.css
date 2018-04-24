@@ -1,3 +1,7 @@
+.admin--w100 {
+    max-width: 100%;
+}
+
 .admin__menu {
     padding-bottom: 2em;
 }

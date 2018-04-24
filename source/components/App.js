@@ -15,7 +15,7 @@ const App = () => (
         <Header className="app__header" />
         <Switch>
             <Route exact path="/" component={PersonsList} />
-            <Route path="/admin" component={Admin} />
+            <Route path="/admin" component={() => <Admin className="admin--w100" />} />
             <Route path="/profile" component={Profile} />
             <Route component={Whoops404} />
         </Switch>
