@@ -34,6 +34,9 @@ export const t = {
     kcal: 'ккал',
     fio: 'ФИО',
     balance: 'Баланс',
+    status: 'Статус',
+    dateConclusion: 'Дата заключения',
+    contractId: 'Номер договора',
 };
 
 export const limitTableRows = 4;
