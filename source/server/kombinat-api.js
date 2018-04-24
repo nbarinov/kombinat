@@ -200,6 +200,27 @@ router.get('/schools/view/:tin', (req, res) => {
     }
 });
 
+router.get('/lease/view/:tin', (req, res) => {
+    const tin = req.params.tin || null;
+
+    try {
+        if (tin) {
+            connection.query(`SELECT l.contract_id contractId, l.create_date dateConclusion, 'действующий' status
+                              FROM school s
+                              INNER JOIN lease_contract l ON l.contract_id = s.contract_id
+                              WHERE s.tin='${tin}';`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/menus/list', (req, res) => {
     try {
         connection.query(`SELECT m.menu_id id, m.use_date date, m.create_date dateCreate, t.name menuType, 
