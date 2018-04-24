@@ -7,6 +7,7 @@ import AdminPersonView from './AdminPersonView';
 import AdminMenus from './AdminMenus';
 import AdminMenusView from './AdminMenusView';
 import AdminContainer from './AdminContainer';
+import Whoops404 from './Whoops404';
 
 import '../../style/admin.css';
 
@@ -24,6 +25,7 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route path="/admin/menus/list" component={AdminMenus} />
             <Route path="/admin/menus/view/:id" render={routeProps => <AdminMenusView {...routeProps} />} />
             <Route path="/admin/dishes/list" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
+            <Route component={Whoops404} />
         </section>;
 };
 
