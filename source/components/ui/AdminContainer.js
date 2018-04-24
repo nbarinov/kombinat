@@ -3,6 +3,8 @@ import { limitPersonRows } from '../../config';
 import DataComponent from '../HOC/DataComponent';
 import Table from './Table';
 
+import '../../style/admin-container.css';
+
 const AdminContainer = ({ className, url, search, commands }) => {
     const DataTable = DataComponent(Table, url);
 
