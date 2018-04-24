@@ -5,6 +5,7 @@ import AdminMenu from './AdminMenu';
 import AdminPersons from './AdminPersons';
 import AdminPersonView from './AdminPersonView';
 import AdminMenus from './AdminMenus';
+import AdminMenusView from './AdminMenusView';
 import AdminContainer from './AdminContainer';
 
 import '../../style/admin.css';
@@ -21,6 +22,7 @@ const Admin = ({ className, admin, onLogIn }) => {
             <Route path="/admin/persons/view/:account" render={routeProps => <AdminPersonView {...routeProps} />} />
             <Route path="/admin/schools/list" component={() => <AdminContainer url="/api/schools/list" search={true} />} />
             <Route path="/admin/menus/list" component={AdminMenus} />
+            <Route path="/admin/menus/view/:id" render={routeProps => <AdminMenusView {...routeProps} />} />
             <Route path="/admin/dishes/list" component={() => <AdminContainer url="/api/dishes/list" search={true} />} />
         </section>;
 };
