@@ -244,7 +244,7 @@ router.get('/menus/list/:tin', (req, res) => {
     const tin = req.params.tin || null;
     try {
         if (tin) {
-            connection.query(`SELECT DISTINCT m.use_date, m.menu_id
+            connection.query(`SELECT DISTINCT m.use_date dateUse, m.menu_id menuId
                               FROM menu m
                               WHERE m.tin_school='${tin}'`,
             (error, results) => {
@@ -352,6 +352,25 @@ router.get('/dishes/list', (req, res) => {
 
             respond(req, res, results);
         });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
+router.get('/history/list/:account', (req, res) => {
+    const account = req.params.account || null;
+    try {
+        if (account) {
+            connection.query(`SELECT DISTINCT h.date, h.history_id historyId
+                              FROM history h
+                              WHERE h.person_account='${account}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                respond(req, res, results);
+            });
+        }
     } catch (err) {
         console.log(err.message);
         console.log(err.stack);
