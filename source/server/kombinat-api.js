@@ -240,6 +240,25 @@ router.get('/contracts/list', (req, res) => {
     }
 });
 
+router.get('/menus/list/:tin', (req, res) => {
+    const tin = req.params.tin || null;
+    try {
+        if (tin) {
+            connection.query(`SELECT DISTINCT m.use_date, m.menu_id
+                              FROM menu m
+                              WHERE m.tin_school='${tin}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/menus/list', (req, res) => {
     try {
         connection.query(`SELECT m.menu_id id, m.use_date date, m.create_date dateCreate, t.name menuType, 
