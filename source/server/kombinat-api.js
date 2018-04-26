@@ -27,7 +27,7 @@ router.get('/person/find', (req, res) => {
     try {
         if (account && lname) {
             connection.query(`SELECT p.person_account account, p.lname lastName, p.fname firstName, 
-                                     p.mname middleName, p.balance, s.name school 
+                                     p.mname middleName, p.balance, s.name school, p.tin_school
                               FROM person p
                               INNER JOIN school s ON p.tin_school = s.tin 
                               WHERE p.person_account='${account}' AND p.lname='${lname}'`, 
