@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { user, admin } from './reducers';
+import { user, admin, calendar } from './reducers';
 
 const clientLogger = store => next => action => {
     let result;
@@ -34,7 +34,7 @@ const middleware = server => [
 
 const storeFactory = (server = false, initialState = {}) =>
     applyMiddleware(...middleware(server))(createStore)(
-        combineReducers({ user, admin }),
+        combineReducers({ user, admin, calendar }),
         (!server) ?
             (localStorage['redux-store']) ? 
                 JSON.parse(localStorage['redux-store']) :
