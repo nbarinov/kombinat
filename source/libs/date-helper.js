@@ -1,4 +1,4 @@
-const zeroBegining = number => (number < 10) ? `0${number}` : number;
+export const zeroBegining = number => (number < 10) ? `0${number}` : number;
 
 export const dateFormatDote = (date) => {
     date = new Date(date);
@@ -20,3 +20,11 @@ export const months = [
     'ноябрь',
     'декабрь',
 ];
+
+export const getDay = date => {
+    let day = date.getDay();
+
+    if (day === 0) day = 7;
+
+    return day - 1;
+};
