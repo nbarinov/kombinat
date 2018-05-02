@@ -244,7 +244,7 @@ router.get('/menus/list/:tin', (req, res) => {
     const tin = req.params.tin || null;
     try {
         if (tin) {
-            connection.query(`SELECT DISTINCT m.use_date dateUse, m.menu_id menuId
+            connection.query(`SELECT m.use_date dateUse, m.menu_id menuId
                               FROM menu m
                               WHERE m.tin_school='${tin}'`,
             (error, results) => {
@@ -302,6 +302,30 @@ router.get('/menus/view/:id', (req, res) => {
         console.log(err.stack);
     }
 });
+
+router.get('/menus/:tin/:date', (req, res) => {
+    const tin = req.params.tin || null;
+    const date = req.params.date || null;
+
+    try {
+        if (date && tin) {
+            connection.query(`SELECT m.menu_id menuId, m.use_date date,
+                              mt.name menuType
+                              FROM menu m
+                              INNER JOIN menu_type mt ON mt.type_code = m.type_code
+                              WHERE m.tin_school='${tin}' AND m.use_date LIKE '${date}%';`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 
 router.delete('/menus/delete/:id', (req, res) => {
     const id = req.params.id || null;
@@ -362,7 +386,7 @@ router.get('/history/list/:account', (req, res) => {
     const account = req.params.account || null;
     try {
         if (account) {
-            connection.query(`SELECT DISTINCT h.date, h.history_id historyId
+            connection.query(`SELECT DISTINCT h.date dateUse, h.menu_id menuId
                               FROM history h
                               WHERE h.person_account='${account}'`,
             (error, results) => {
