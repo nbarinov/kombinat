@@ -1,5 +1,9 @@
 {
     "user": null,
     "admin": null,
-    "calendar": null
+    "calendar": {
+        "date": null,
+        "month": null,
+        "year": null
+    }
 }

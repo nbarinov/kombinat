@@ -5,7 +5,7 @@ import '../../style/calendar.css';
 const Calendar = ({ className, calendar, setDate, menus, history }) => {
     let calendarArray = null;
 
-    if(!calendar) {
+    if(!calendar.month || !calendar.year) {
         calendar = {
             date: new Date().getDate(),
             month: new Date().getMonth(),
