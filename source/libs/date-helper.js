@@ -28,3 +28,6 @@ export const getDay = date => {
 
     return day - 1;
 };
+
+export const getGenitiveMonth = index => 
+    `${months[index].slice(0, months[index].length - 1)}${(index === 2 || index === 7) ? 'а' : 'я'}`;
