@@ -2,15 +2,13 @@ import PropTypes from 'prop-types';
 import LogInForm from './LogInForm';
 import DataComponent from '../HOC/DataComponent';
 import Table from './Table';
-import { months } from '../../libs/date-helper';
-import { Calendar } from '../containers';
+import MenuCalendar from './MenuCalendar';
 import fetch from 'isomorphic-fetch';
-import { Link } from 'react-router-dom';
-import { zeroBegining } from '../../libs/date-helper';
+import { months } from '../../libs/date-helper';
 
 import '../../style/profile.css';
 
-const Profile = ({ className, user, onLogIn, calendar }) => {
+const Profile = ({ className, user, onLogIn }) => {
     let PaymentTable = null;
     let RateTable = null;
 
@@ -54,19 +52,7 @@ const Profile = ({ className, user, onLogIn, calendar }) => {
             </section>
             <section className="profile__history">
                 <h2 className="profile__title">Меню</h2>
-                <div className="profile__wrapper">
-                    <div className="profile__sidebar">
-                        {(calendar.date === null) ?
-                            <span>Выберите дату</span> :
-                            <span>Меню на
-                                <br />
-                                <Link 
-                                    to={`/menus/${user.tin_school}/${calendar.year}-${zeroBegining(calendar.month + 1)}-${zeroBegining(calendar.date)}`}>
-                                    {calendar.date} {months[calendar.month]}</Link>
-                            </span>}
-                    </div>
-                    <Calendar className="profile__calendar" menus={user.menus} history={user.history} />
-                </div>
+                <MenuCalendar className="profile__menu-calendar" user={user} />
             </section>
         </div>;
 };

@@ -1,17 +1,10 @@
+import PropTypes from 'prop-types';
 import { zeroBegining, getDay, months } from '../../libs/date-helper';
 
 import '../../style/calendar.css';
 
 const Calendar = ({ className, calendar, setDate, menus, history }) => {
     let calendarArray = null;
-
-    if(!calendar.month || !calendar.year) {
-        calendar = {
-            date: new Date().getDate(),
-            month: new Date().getMonth(),
-            year: new Date().getFullYear(),
-        };
-    }
 
     const initialCalendar = () => {
         let date = new Date(calendar.year, calendar.month);
@@ -152,6 +145,22 @@ const Calendar = ({ className, calendar, setDate, menus, history }) => {
 
 Calendar.defaultProps = {
     className: '',
+    calendar: {
+        date: new Date().getDate(),
+        month: new Date().getMonth(),
+        year: new Date().getFullYear(),
+    },
+    setDate: f => f,
+    menus: [],
+    history: [],
+};
+
+Calendar.propTypes = {
+    className: PropTypes.string,
+    calendar: PropTypes.object,
+    setDate: PropTypes.func,
+    menus: PropTypes.arrayOf(PropTypes.object),
+    history: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Calendar;

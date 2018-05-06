@@ -3,14 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import ProfileUI from './ui/Profile';
-import CalendarUI from './ui/Calendar';
 import MainMenuUI from './ui/MainMenu';
 import AdminUI from './ui/Admin';
 
-import { userLogIn, userLogOut, adminLogIn, calendarSetDate } from '../actions';
+import { userLogIn, userLogOut, adminLogIn } from '../actions';
 
 export const Profile = connect(
-    ({ user, calendar }) => ({ user, calendar }),
+    ({ user }) => ({ user }),
     dispath => ({
         onLogIn(person) {
             dispath(userLogIn(person));
@@ -38,12 +37,3 @@ export const Admin = connect(
         }
     })
 )(AdminUI);
-
-export const Calendar = connect(
-    ({ calendar }) => ({ calendar }),
-    dispath => ({
-        setDate(date) {
-            dispath(calendarSetDate(date));
-        },
-    })
-)(CalendarUI);

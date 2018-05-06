@@ -27,14 +27,3 @@ export const admin = (state = null, action) => {
             return state;
     }
 };
-
-export const calendar = (state = null, action) => {
-    switch (action.type) {
-        case C.CALENDAR_SET_DATE:
-            return {
-                ...action.date,
-            };
-        default:
-            return state;
-    }
-};
