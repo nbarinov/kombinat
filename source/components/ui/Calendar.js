@@ -54,7 +54,6 @@ const Calendar = ({ className, calendar, setDate, menus, history }) => {
                     dateUse = `${dateUse.getFullYear()}-${zeroBegining(dateUse.getMonth() + 1)}-${zeroBegining(dateUse.getDate())}`;
                     if (dateNow === history[i].dateUse.slice(0, 10)) {
                         className += ' calendar__cell--history';
-                        menuId = history[i].menuId;
                         break;
                     }
                 }
