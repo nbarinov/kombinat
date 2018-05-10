@@ -37,6 +37,9 @@ export const t = {
     status: 'Статус',
     dateConclusion: 'Дата заключения',
     contractId: 'Номер договора',
+    fioParent: 'ФИО родителя',
+    fioPerson: 'ФИО ребенка',
+    dateSigning: 'Дата подписания',
 };
 
 export const limitTableRows = 4;
