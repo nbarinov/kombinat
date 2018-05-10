@@ -1,0 +1,34 @@
+.person-form {
+    width: 100%;
+    max-width: 480px;
+}
+
+.person-form__row {
+    margin-bottom: 1.5em;
+}
+
+.person-form__row:last-child {
+    margin-bottom: 0;
+}
+
+.person-form__input,
+.person-form__select {
+    margin-top: 8px;
+}
+
+.person-form__message {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.person-form__message--error {
+    color: #e03131;
+}
+
+.person-form__message--warning {
+    color: #fab005;
+}
+
+.person-form__message--success {
+    color: #37b24d;
+}
