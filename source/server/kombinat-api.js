@@ -106,6 +106,46 @@ router.get('/person/view/:account', (req, res) => {
     }
 });
 
+router.get('/person/edit/:account', (req, res) => {
+    const account = req.params.account || null;
+
+    try {
+        if (account) {
+            connection.query(`SELECT p.lname lastName, p.fname firstName, p.mname middleName, p.tin_school schoolName, p.balance, p.person_account account
+                              FROM person p
+                              WHERE p.person_account='${account}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
+router.post('/person/save', (req, res) => {
+    const { account, balance, firstName, lastName, middleName, tin } = req.body;
+
+    try {
+        if (account) {
+            connection.query(`UPDATE person 
+                              SET lname='${lastName}', fname='${firstName}', mname='${middleName}', tin_school='${tin}', balance='${balance}'
+                              WHERE person_account='${account}'`,
+            (error, results) => {
+                if (error) throw error;
+
+                return respond(req, res, results);
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/parent/find/:id', (req, res) => {
     const id = req.params.id || null;
 
