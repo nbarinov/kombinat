@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { withAlert } from 'react-alert';
 import fetch from 'isomorphic-fetch';
 
-const AdminPersons = ({ className, history, alert }) => {
+const AdminPersons = ({ className, history, alert, admin }) => {
     const viewPerson = person => {
         history.push(`/admin/persons/view/${person.account}`);
     };
@@ -33,20 +33,33 @@ const AdminPersons = ({ className, history, alert }) => {
         }
     };
 
-    const commands = [
-        {
-            name: 'view',
-            func: viewPerson,
-        },
-        {
-            name: 'edit',
-            func: editPerson,
-        },
-        {
-            name: 'delete',
-            func: deletePerson,
-        },
-    ];
+    let commands = [];
+
+    switch (Number(admin.role)) {
+        case 1:
+            commands = [
+                {
+                    name: 'view',
+                    func: viewPerson,
+                },
+                {
+                    name: 'edit',
+                    func: editPerson,
+                },
+                {
+                    name: 'delete',
+                    func: deletePerson,
+                },
+            ];
+            break;
+        default: 
+            commands = [
+                {
+                    name: 'view',
+                    func: viewPerson,
+                },
+            ];
+    }
 
     return <AdminContainer url="/api/persons/list" className={className} search={true} commands={commands} />;
 };
@@ -55,6 +68,7 @@ AdminPersons.propTypes = {
     className: PropTypes.string,
     history: PropTypes.object.isRequired,
     alert: PropTypes.object.isRequired,
+    admin: PropTypes.object.isRequired,
 };
 
 export default compose(

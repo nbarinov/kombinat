@@ -25,7 +25,7 @@ const Admin = ({ className, admin, onLogIn }) => {
                 <Route exact path="/admin" render={() => <section>
                     <h2>Здравствуйте, {admin.fname || admin.login}!</h2>
                 </section>} />
-                <Route path="/admin/persons/list" component={AdminPersons} />
+                <Route path="/admin/persons/list" render={() => <AdminPersons admin={admin} />} />
                 <Route path="/admin/persons/view/:account" render={routeProps => <AdminPersonView {...routeProps} />} />
                 <Route path="/admin/persons/edit/:account" render={routeProps => <AdminPersonEdit {...routeProps} />} />
                 <Route path="/admin/schools/list" component={AdminSchools} />
