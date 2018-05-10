@@ -10,6 +10,10 @@ const AdminPersons = ({ className, history, alert }) => {
         history.push(`/admin/persons/view/${person.account}`);
     };
 
+    const editPerson = person => {
+        history.push(`/admin/persons/edit/${person.account}`);
+    };
+
     const deletePerson = person => {
         const toDelete = confirm(`Удалить ${person.lastName} ${person.firstName} ${person.middleName}?`);
 
@@ -36,7 +40,7 @@ const AdminPersons = ({ className, history, alert }) => {
         },
         {
             name: 'edit',
-            func: f => f,
+            func: editPerson,
         },
         {
             name: 'delete',
