@@ -44,7 +44,7 @@ class MenuCalendar extends Component {
                                 {calendar.date} {months[calendar.month]}</Link>
                         </span>}
                 </div>
-                <Calendar className="menu-calendar__calendar" calendar={calendar} menus={user.menus} history={user.history} setDate={onSetDate} />
+                <Calendar className="menu-calendar__calendar" calendar={calendar} menus={user.menus || []} history={user.history || []} setDate={onSetDate} />
             </div>
         );
     }

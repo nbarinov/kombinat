@@ -36,7 +36,7 @@ const Calendar = ({ className, calendar, setDate, menus, history }) => {
 
             const dateNow = `${date.getFullYear()}-${monthString}-${zeroBegining(date.getDate())}`;
 
-            if (menus) {
+            if (menus.length > 0) {
                 for (let i = 0; i < menus.length; i++) {
                     let dateUse = new Date(menus[i].dateUse);
                     dateUse = `${dateUse.getFullYear()}-${zeroBegining(dateUse.getMonth() + 1)}-${zeroBegining(dateUse.getDate())}`;
@@ -48,7 +48,7 @@ const Calendar = ({ className, calendar, setDate, menus, history }) => {
                 }
             }
 
-            if (history) {
+            if (menus.length > 0) {
                 for (let i = 0; i < history.length; i++) {
                     let dateUse = new Date(menus[i].dateUse);
                     dateUse = `${dateUse.getFullYear()}-${zeroBegining(dateUse.getMonth() + 1)}-${zeroBegining(dateUse.getDate())}`;
