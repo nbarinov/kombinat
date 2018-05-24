@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import AdminContainer from './AdminContainer';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { withAlert } from 'react-alert';
 import fetch from 'isomorphic-fetch';
+
+import '../../style/admin-persons.css';
 
 const AdminPersons = ({ className, history, alert, admin }) => {
     const viewPerson = person => {
@@ -61,7 +63,10 @@ const AdminPersons = ({ className, history, alert, admin }) => {
             ];
     }
 
-    return <AdminContainer url="/api/persons/list" className={className} search={true} commands={commands} />;
+    return <section className={(className) ? `${className} admin-persons` : 'admin-persons'}>
+        <AdminContainer url="/api/persons/list" className="admin-persons__container" search={true} commands={commands} />
+        <Link to="/admin/persons/add" className="admin-persons__link">+ Добавить ребенка</Link>
+    </section>;
 };
 
 AdminPersons.propTypes = {

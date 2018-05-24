@@ -6,6 +6,7 @@ import AdminMenu from './AdminMenu';
 import AdminPersons from './AdminPersons';
 import AdminPersonView from './AdminPersonView';
 import AdminPersonEdit from './AdminPersonEdit';
+import AdminPersonAdd from './AdminPersonAdd';
 import AdminMenus from './AdminMenus';
 import AdminMenusView from './AdminMenusView';
 import AdminSchools from './AdminSchools';
@@ -28,6 +29,7 @@ const Admin = ({ className, admin, onLogIn }) => {
                 <Route path="/admin/persons/list" render={() => <AdminPersons admin={admin} />} />
                 <Route path="/admin/persons/view/:account" render={routeProps => <AdminPersonView {...routeProps} />} />
                 <Route path="/admin/persons/edit/:account" render={routeProps => <AdminPersonEdit {...routeProps} />} />
+                <Route path="/admin/persons/add" component={AdminPersonAdd} />
                 <Route path="/admin/schools/list" component={AdminSchools} />
                 <Route path="/admin/schools/view/:tin" render={routeProps => <AdminSchoolsView {...routeProps} />} />
                 <Route path="/admin/menus/list" component={AdminMenus} />

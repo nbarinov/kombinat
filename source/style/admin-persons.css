@@ -1,0 +1,11 @@
+.admin-persons {
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 1170px;
+}
+
+.admin-persons__container {
+    width: 860px;
+    padding-right: 0;
+}
