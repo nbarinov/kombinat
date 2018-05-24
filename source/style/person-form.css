@@ -3,6 +3,10 @@
     max-width: 480px;
 }
 
+.person-form--w560 {
+    max-width: 560px;
+}
+
 .person-form__row {
     margin-bottom: 1.5em;
 }

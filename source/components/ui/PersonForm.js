@@ -19,6 +19,8 @@ class PersonForm extends Component {
 
         this.refsArray = new Array();
 
+        this.SelectSchools = DataComponent(Select, '/api/schools/list');
+
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -82,7 +84,7 @@ class PersonForm extends Component {
     render() {
         const { className, data } = this.props;
         const { message } = this.state;
-        const { onSubmit } = this;
+        const { SelectSchools, onSubmit } = this;
 
         if (data.length === 0) {
             return <h2>Ребенок не найден</h2>;
@@ -90,7 +92,6 @@ class PersonForm extends Component {
 
         const person = data[0];
         const labels = Object.keys(person);
-        const SelectSchools = DataComponent(Select, '/api/schools/list');
 
         return (
             <form className={(className) ? `${className} person-form` : 'person-form'} onSubmit={onSubmit}>
