@@ -70,7 +70,13 @@ class PersonForm extends Component {
                         }
                     });
                 }
-            });
+            })
+            .catch(error => this.setState({
+                message: {
+                    type: 'warning',
+                    value: `Произошла ошибка на сервере. Мы решаем эту проблему. Текст сообщения: ${error}`,
+                }
+            }));
     }
 
     render() {
