@@ -146,6 +146,125 @@ router.post('/person/save', (req, res) => {
     }
 });
 
+router.post('/person/add', (req, res) => {
+    const { balance, firstName, lastName, middleName, tin, parent } = req.body;
+
+    // console.log(lastName, firstName, middleName, balance, tin, parent);
+
+    try {
+        // формируем номер договора
+        connection.query(`SELECT name FROM school WHERE tin='${tin}'`, (error, results) => {
+            if (error) throw error;
+
+            const year = new Date().getFullYear();
+            const month  = new Date().getMonth() + 1;
+            const day = new Date().getDate();
+            const date = `${year}-${month}-${day}`;
+
+            const schoolName = (results.length > 0) ? results[0].name : null;
+            const schoolNumber = schoolName.substr((schoolName.indexOf('№') + 1) || null, schoolName.length);
+
+            let schoolCode = '';
+            for (let i = 0; i < 6 - schoolNumber.length; i++) {
+                schoolCode += '0';
+            }
+
+            schoolCode += schoolNumber;
+            
+            let personCode = '';
+
+            connection.query(`SELECT person_account account FROM person WHERE person_account LIKE '63${schoolCode}${year}%'`, 
+                (error, results) => {
+                    if (error) throw error;
+                    
+                    if (results.length > 0) {
+                        personCode = Number(results[results.length - 1].account.substr(-3)) + 1;
+
+                        if (String(personCode).length < 3) {
+                            for (let i = 0; i <= 3 - String(personCode).length; i++) {
+                                personCode = '0' + personCode;
+                            }
+                        }
+                    } else {
+                        personCode = '001';
+                    }
+
+                    const contractNumber = `63${schoolCode}${year}${personCode}`;
+                    
+                    // получаем id родителя
+                    connection.query(`SELECT parent_id parentId FROM parent WHERE fio='${parent}'`, (error, results) => {
+                        if (error) throw error;
+
+                        if (results.length > 0) {
+                            const parentId = results[0].parentId;
+
+                            // добавляем договор
+                            connection.query(`INSERT INTO contract_parent VALUES ('${contractNumber}', '${date}', '${date}', 2, ${parentId})`, (error, results) => {
+                                if (error) throw error;
+
+                                // если договор добавлен успешно
+                                if (results.affectedRows === 1) {
+                                    // добавляем ребенка
+                                    connection.query(`INSERT INTO person 
+                                                      VALUES ('${contractNumber}', '${lastName}', '${firstName}', '${middleName}', ${balance}, ${parentId}, ${tin})`,
+                                    (error, results) => {
+                                        if (error) throw error;
+
+                                        return respond(req, res, results);
+                                    });
+                                } else {
+                                    return respond(req, res, results);
+                                }
+                            });   
+                        } else {
+                            // добавляем родителя
+                            connection.query(`INSERT INTO parent (fio) VALUES ('${parent}')`, (error, results) => {
+                                if (error) throw error;
+                                
+                                // если родитель добавлен успешно
+                                if (results.affectedRows === 1) {
+                                    connection.query(`SELECT parent_id parentId FROM parent WHERE fio='${parent}'`, (error, results) => {
+                                        if (error) throw error;
+
+                                        if (results.length > 0) {
+                                            const parentId = results[0].parentId;
+
+                                            // добавляем договор
+                                            connection.query(`INSERT INTO contract_parent VALUES ('${contractNumber}', '${date}', '${date}', 2, ${parentId})`, (error, results) => {
+                                                if (error) throw error;
+
+                                                // если договор добавлен успешно
+                                                if (results.affectedRows === 1) {
+                                                    // добавляем ребенка
+                                                    connection.query(`INSERT INTO person 
+                                                      VALUES ('${contractNumber}', '${lastName}', '${firstName}', '${middleName}', ${balance}, ${parentId}, ${tin})`,
+                                                    (error, results) => {
+                                                        if (error) throw error;
+
+                                                        return respond(req, res, results);
+                                                    });
+                                                } else {
+                                                    return respond(req, res, results);
+                                                }
+                                            });
+                                        } else {
+                                            return respond(req, res, results);
+                                        }  
+                                    }); 
+                                } else {
+                                    return respond(req, res, results);
+                                }
+                            });
+                        }
+                    });
+                });
+        });
+    } catch (err) {
+        console.log(err.message);
+        console.log(err.stack);
+    }
+});
+
 router.get('/parent/find/:id', (req, res) => {
     const id = req.params.id || null;
 
@@ -365,7 +484,6 @@ router.get('/menus/:tin/:date', (req, res) => {
         console.log(err.stack);
     }
 });
-
 
 router.delete('/menus/delete/:id', (req, res) => {
     const id = req.params.id || null;
