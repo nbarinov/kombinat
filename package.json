@@ -47,7 +47,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "extract-text-webpack-plugin": "^3.0.2",
-    "httpster": "^1.0.4",
+    "httpster": "^1.1.0",
     "ignore-styles": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
     "md5": "^2.2.1",
